@@ -1,6 +1,5 @@
 import Input from '~/components/Input'
 import { useState } from 'react'
-import Image from 'next/image'
 import ImageActionLayout from '~/components/Layout/ImageActionLayout'
 
 export default function Home() {
@@ -9,10 +8,7 @@ export default function Home() {
   const onDeposit = () => {}
 
   return (
-    <div
-      className="flex h-full w-full items-center justify-end 
-    "
-    >
+    <div className="flex h-full w-full items-center justify-end">
       <ImageActionLayout
         imageSrc={'/background.png'}
         imageAlt={'bg'}
