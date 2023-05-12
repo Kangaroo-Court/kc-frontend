@@ -1,20 +1,25 @@
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
-export type DefendantType = { id: number; address: string }
-
-type SelectPanelProps = {
-  items: DefendantType[]
-  selectedOption: DefendantType | undefined
-  changeSelectedOption: Dispatch<SetStateAction<DefendantType | undefined>>
+type SelectPanelProps<T> = {
+  items: T[]
+  selectedOption: T | undefined
+  changeSelectedOption: Dispatch<SetStateAction<T | undefined>>
+  isHorizontal?: boolean
 }
-const SelectPanel: React.FC<SelectPanelProps> = ({
+export default function SelectPanel<T extends { id: number; label: string }>({
   items,
   selectedOption,
   changeSelectedOption,
-}) => {
+  isHorizontal = false,
+}: SelectPanelProps<T>) {
   return (
-    <div className="flex flex-col gap-5">
+    <div
+      className={clsx('flex gap-5', {
+        'flex-row': isHorizontal,
+        'flex-col': !isHorizontal,
+      })}
+    >
       {items.map((item) => (
         <div
           key={item.id}
@@ -24,10 +29,9 @@ const SelectPanel: React.FC<SelectPanelProps> = ({
           )}
           onClick={() => changeSelectedOption(item)}
         >
-          {item.address}
+          {item.label}
         </div>
       ))}
     </div>
   )
 }
-export default SelectPanel

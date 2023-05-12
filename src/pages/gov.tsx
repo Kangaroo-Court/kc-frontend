@@ -1,10 +1,10 @@
 import Defendant from '~/components/Gov/Defendant'
-import ImageActionLayout from '~/components/Layout/ImageActionLayout'
-import SelectPanel from '~/components/SelectPanel'
+import Prosecution from '~/components/Gov/Prosecution'
 
 export default function Home() {
   const usersLayout = () => {
     return <Defendant />
+    return <Prosecution />
   }
 
   return (
