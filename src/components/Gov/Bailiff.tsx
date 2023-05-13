@@ -7,11 +7,13 @@ const Jury: React.FC = () => {
   return (
     <>
       <ImageActionLayout
-        imageSrc="/balif.png"
-        imageAlt="balif"
+        imageSrc="/bailiff.png"
+        imageAlt="bailiff"
         actionNode={
           <div className="flex flex-col items-center gap-40">
-            <h1 className="px-5 text-6xl font-bold text-primary-600">Balif</h1>
+            <h1 className="px-5 text-6xl font-bold text-primary-600 underline">
+              Bailiff
+            </h1>
             <div className="flex flex-col items-center gap-20">
               <div className="flex items-center gap-20">
                 <h3 className="text-2xl font-medium text-primary-600">
