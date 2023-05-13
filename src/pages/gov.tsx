@@ -10,6 +10,7 @@ import roles from 'roles.json'
 export default function GovPage() {
   const { address } = useAccount()
   const usersLayout = () => {
+    return <Jury juryNumber="1" />
     if (!address) return <></>
     const roleToBe = roles.find((x) => x.Address === address)?.Role
 
