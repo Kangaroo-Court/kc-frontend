@@ -44,7 +44,10 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({
         </h3>
         <div className="flex flex-col items-center gap-5 pb-10">
           {veredicts.map((item) => (
-            <div className="flex gap-5 text-lg font-medium text-primary-600">
+            <div
+              className="flex gap-5 text-lg font-medium text-primary-600"
+              key={item.jury}
+            >
               <h3>{item.jury}</h3> <h3>{item.veredict ? 'True' : 'False'}</h3>
             </div>
           ))}
