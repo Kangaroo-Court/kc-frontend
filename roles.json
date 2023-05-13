@@ -1,0 +1,19 @@
+[
+  {
+    "Address": "0x51418Bb6de31558061635a4dA8Bca86B1E7D09fb",
+    "Role": "Defandant"
+  },
+  {
+    "Address": "0x53E0A037E4b08f1Befa617d34EBB78cBb8015de9",
+    "Role": "Defense"
+  },
+  {
+    "Address": "0xa8B30cC58fB9f287863BF435f51886D6b5F475C3",
+    "Role": "Prosecutor"
+  },
+  { "Address": "0xffd8fC86B43F3e7cD6F6184c85801C5cb31C2981", "Role": "Jury1" },
+  { "Address": "0xB6B3aEcaAaFF6034662CC70Ae3A581C9D4D21bec", "Role": "Jury2" },
+  { "Address": "0x50825D7609eFc95aEF4f68aF04905FaeF6E97b93", "Role": "Jury3" },
+  { "Address": "0x04B022a51E4413181D8BeF4C06eC642a2C107e3F", "Role": "Judge" },
+  { "Address": "0x42f7B8Aa00D05daA58Dfd1c6060B97c0e0318Fe9", "Role": "Bailiff" }
+]
