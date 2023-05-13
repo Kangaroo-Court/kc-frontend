@@ -7,7 +7,11 @@ import {
 import { ethers } from 'ethers'
 import { useAccount } from 'wagmi'
 
-const createJudgeAttestation = async (veredict: boolean, timeLock: number) => {
+const createJudgeAttestation = async (
+  address: string,
+  veredict: boolean,
+  timeLock: number
+) => {
   const EASContractAddress = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e' // Sepolia v0.26
 
   // Initialize the sdk with the address of the EAS Schema contract address
@@ -25,13 +29,11 @@ const createJudgeAttestation = async (veredict: boolean, timeLock: number) => {
     'address ADDRESS,uint256 JUDGE,bool FINAL_VERDICT,uint256 TIMELOCK'
   )
 
-  const { address } = useAccount()
-
   const encodedData = schemaEncoder.encodeData([
-    { name: 'ADDRESS', value: address!, type: 'address' },
-    { name: 'JUDGE', value: 1, type: 'uint256' },
-    { name: 'FINAL_VERDICT', value: veredict, type: 'bool' },
-    { name: 'TIMELOCK', value: timeLock, type: 'uint256' },
+    { name: 'ADDRESS', value: address!, type: 'address' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+    { name: 'JUDGE', value: 1, type: 'uint256' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+    { name: 'FINAL_VERDICT', value: veredict, type: 'bool' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+    { name: 'TIMELOCK', value: timeLock, type: 'uint256' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
   ])
 
   const schemaUID =

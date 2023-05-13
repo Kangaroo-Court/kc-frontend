@@ -5,7 +5,7 @@ import Input from '../../shared/Input'
 import VeredictsModal from './VeredictsModal'
 import { GiScrollUnfurled } from 'react-icons/gi'
 
-const Jury: React.FC = () => {
+const Judge: React.FC = () => {
   const [selectedBinary, setSelectedBinary] = useState<{
     id: number
     label: string
@@ -75,4 +75,4 @@ const Jury: React.FC = () => {
     </>
   )
 }
-export default Jury
+export default Judge

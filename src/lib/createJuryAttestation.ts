@@ -1,13 +1,7 @@
-import {
-  EAS,
-  Offchain,
-  SchemaEncoder,
-  SchemaRegistry,
-} from '@ethereum-attestation-service/eas-sdk'
+import { EAS, SchemaEncoder } from '@ethereum-attestation-service/eas-sdk'
 import { ethers } from 'ethers'
-import { useAccount } from 'wagmi'
 
-const createJuryAttestation = async (veredict: boolean) => {
+const createJuryAttestation = async (address: string, veredict: boolean) => {
   const EASContractAddress = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e' // Sepolia v0.26
 
   // Initialize the sdk with the address of the EAS Schema contract address
@@ -25,19 +19,15 @@ const createJuryAttestation = async (veredict: boolean) => {
     'address ADDRESS,uint256 JURY,bool VERDICT'
   )
 
-  const { address } = useAccount()
-
   const encodedData = schemaEncoder.encodeData([
-    { name: 'ADDRESS', value: address!, type: 'address' },
-    { name: 'JURY', value: 1, type: 'uint256' },
-    { name: 'VERDICT', value: veredict, type: 'bool' },
+    { name: 'ADDRESS', value: address!, type: 'address' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+    { name: 'JURY', value: 1, type: 'uint256' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+    { name: 'VERDICT', value: veredict, type: 'bool' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
   ])
 
-  const schemaUID =
-    '0x56c13171ec212b1bd36ca786b7ed53678a03136863c85063ec0fa23f15e8fcee'
-
   const tx = await eas.attest({
-    schema: schemaUID,
+    schema:
+      '0x56c13171ec212b1bd36ca786b7ed53678a03136863c85063ec0fa23f15e8fcee',
     data: {
       recipient: '0xFD50b031E778fAb33DfD2Fc3Ca66a1EeF0652165',
       expirationTime: 0,

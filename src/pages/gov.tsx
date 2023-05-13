@@ -1,4 +1,4 @@
-import Balif from '~/components/Gov/Balif'
+import Bailiff from '~/components/Gov/Bailiff'
 import DefendantClaim from '~/components/Gov/Defendant/DefendantClaim'
 import DefendantVeredict from '~/components/Gov/Defendant/DefendantVeredict'
 import Defense from '~/components/Gov/Defense'
@@ -13,7 +13,7 @@ export default function GovPage() {
     return <Judge />
     return <Defense />
     return <DefendantVeredict />
-    return <Balif />
+    return <Bailiff />
     return <Prosecution />
   }
 

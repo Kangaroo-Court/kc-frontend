@@ -1,6 +1,6 @@
 import ImageActionLayout from '../Layout/ImageActionLayout'
 
-const Jury: React.FC = () => {
+const Bailiff: React.FC = () => {
   const guiltyStatus: 'Guilty' | 'Not Guilty' = 'Guilty'
   const sentenceTime = 12301
 
@@ -38,4 +38,4 @@ const Jury: React.FC = () => {
     </>
   )
 }
-export default Jury
+export default Bailiff
