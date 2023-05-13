@@ -8,7 +8,7 @@ const createJuryAttestation = async (
   juryNumber: number
 ) => {
   try {
-    const EASContractAddress = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e' // Sepolia v0.26
+    const EASContractAddress = '0x1a5650D0EcbCa349DD84bAFa85790E3e6955eb84' // Sepolia v0.26
 
     // Initialize the sdk with the address of the EAS Schema contract address
     const eas = new EAS(EASContractAddress)
@@ -34,7 +34,7 @@ const createJuryAttestation = async (
       data: {
         recipient: '0x04B022a51E4413181D8BeF4C06eC642a2C107e3F',
         expirationTime: 0,
-        revocable: true,
+        revocable: false,
         data: encodedData,
       },
     })
