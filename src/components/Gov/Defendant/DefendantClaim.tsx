@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import ImageActionLayout from '../Layout/ImageActionLayout'
-import SelectPanel from '../shared/SelectPanel'
-import Input from '../shared/Input'
+import ImageActionLayout from '../../Layout/ImageActionLayout'
+import SelectPanel from '../../shared/SelectPanel'
+import Input from '../../shared/Input'
 
 export type DefendantType = { id: number; label: string } //TODO change this
 
