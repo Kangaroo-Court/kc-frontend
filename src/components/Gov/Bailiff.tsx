@@ -1,8 +1,16 @@
+import { useSignMessage } from 'wagmi'
 import ImageActionLayout from '../Layout/ImageActionLayout'
+import ConfirmationModal from '../shared/ConfirmationModal'
+import { useState } from 'react'
 
 const Bailiff: React.FC = () => {
   const guiltyStatus: 'Guilty' | 'Not Guilty' = 'Guilty'
   const sentenceTime = 12301
+  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
+    message: 'Execute sentence',
+  })
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
+    useState<boolean>(false)
 
   return (
     <>
@@ -29,11 +37,21 @@ const Bailiff: React.FC = () => {
                 <span>{sentenceTime}</span>
               </h4>
             </div>
-            <button className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50">
+            <button
+              onClick={() => signMessage()}
+              className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
+            >
               Execute
             </button>
           </div>
         }
+      />
+      <ConfirmationModal
+        isOpen={isConfirmationModalOpen}
+        setIsOpen={setIsConfirmationModalOpen}
+        isError={isError}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
       />
     </>
   )
