@@ -3,7 +3,6 @@ import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
 import { useQuery } from '@airstack/airstack-react'
 import { getApeCoinBalance } from '~/queries/getApeCoinBalance.query'
-import { formatEther } from 'viem'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -15,11 +14,11 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
     label: string
   }>()
 
-  const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false })
+  const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false }) //eslint-disable-line @typescript-eslint/no-unsafe-assignment
   console.log({
-    data,
-    loading,
-    error,
+    data, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+    loading, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+    error, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
   })
 
   return (
