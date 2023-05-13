@@ -1,7 +1,6 @@
 import { useAccount } from 'wagmi'
 import Bailiff from '~/components/Gov/Bailiff'
 import DefendantClaim from '~/components/Gov/Defendant/DefendantClaim'
-import DefendantVeredict from '~/components/Gov/Defendant/DefendantVeredict'
 import Defense from '~/components/Gov/Defense'
 import Judge from '~/components/Gov/Judge/Judge'
 import Jury from '~/components/Gov/Jury'

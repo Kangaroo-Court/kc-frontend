@@ -5,19 +5,22 @@ import Image from 'next/image'
 import { CustomConnectBtn } from '../CustomConnectBtn'
 
 const Header: React.FC = () => {
-  const headerLinks: { id: 'predict' | 'gov'; link: string; label: string }[] =
-    [
-      {
-        id: 'predict',
-        link: '/predict',
-        label: 'Predict',
-      },
-      {
-        id: 'gov',
-        link: '/gov',
-        label: 'Gov',
-      },
-    ]
+  const headerLinks: {
+    id: 'initialize' | 'gov'
+    link: string
+    label: string
+  }[] = [
+    {
+      id: 'initialize',
+      link: '/initialize',
+      label: 'Initialize',
+    },
+    {
+      id: 'gov',
+      link: '/gov',
+      label: 'Gov',
+    },
+  ]
 
   const { asPath } = useRouter()
 
