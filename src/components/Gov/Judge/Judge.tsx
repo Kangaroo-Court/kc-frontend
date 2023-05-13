@@ -27,7 +27,7 @@ const Judge: React.FC = () => {
             <h1 className="px-5 text-6xl font-bold text-primary-600 underline">
               Judge
             </h1>
-            <div className="flex flex-col items-center gap-20">
+            <div className="flex flex-col items-center gap-10">
               <div className="flex items-center gap-20">
                 <h3 className="text-2xl font-medium text-primary-600">
                   ***Transaction Hash***
