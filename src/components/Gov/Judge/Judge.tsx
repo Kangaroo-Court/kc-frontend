@@ -23,7 +23,7 @@ const Judge: React.FC = () => {
         imageSrc="/judge.png"
         imageAlt="judge"
         actionNode={
-          <div className="flex flex-col items-center gap-40">
+          <div className="flex flex-col items-center gap-28">
             <h1 className="px-5 text-6xl font-bold text-primary-600 underline">
               Judge
             </h1>
