@@ -53,3 +53,4 @@ const createJudgeAttestation = async (
 
   console.log(newAttestationUID)
 }
+export default createJudgeAttestation

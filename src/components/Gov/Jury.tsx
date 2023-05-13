@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
-import { useQuery } from '@airstack/airstack-react'
-import { getApeCoinBalance } from '~/queries/getApeCoinBalance.query'
-import { useAccount, useEnsName } from 'wagmi'
+import createJuryAttestation from '~/lib/createJuryAttestation'
+import { useAccount, useSigner } from 'wagmi'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -14,17 +13,18 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
     id: number
     label: string
   }>()
+  const { address } = useAccount()
+  const { data: signer } = useSigner()
 
-  // const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false }) //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  // console.log({
-  //   data, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  //   loading, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  //   error, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  // })
-
-  const { address, isConnected } = useAccount()
-  const { data: ensName } = useEnsName({ address })
-  console.log(ensName)
+  const onPassVeredict = async () => {
+    if (signer && address && selectedBinary)
+      await createJuryAttestation(
+        signer,
+        address,
+        selectedBinary.id === 0,
+        +juryNumber
+      )
+  }
 
   return (
     <ImageActionLayout
@@ -52,6 +52,7 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
           <button
             className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
             disabled={!selectedBinary}
+            onClick={onPassVeredict}
           >
             Pass Veredict
           </button>

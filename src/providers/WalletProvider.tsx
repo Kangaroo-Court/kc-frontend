@@ -4,7 +4,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit'
-import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { lineaTestnet, scrollTestnet, optimismGoerli } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 import resolveConfig from 'tailwindcss/resolveConfig'
@@ -15,7 +15,7 @@ type WalletProviderProps = {
 }
 const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
   const { theme } = resolveConfig(tailwindConfig)
-  const { chains, publicClient } = configureChains(
+  const { chains, provider } = configureChains(
     [optimismGoerli, scrollTestnet, lineaTestnet],
     [publicProvider()]
   )
@@ -26,14 +26,14 @@ const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     chains,
   })
 
-  const wagmiConfig = createConfig({
+  const wagmiClient = createClient({
     autoConnect: true,
     connectors,
-    publicClient,
+    provider,
   })
 
   return (
-    <WagmiConfig config={wagmiConfig}>
+    <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
         chains={chains}
         theme={darkTheme({

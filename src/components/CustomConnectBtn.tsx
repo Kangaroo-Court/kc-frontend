@@ -16,7 +16,6 @@ export const CustomConnectBtn = () => {
         // can remove all 'authenticationStatus' checks
         const ready = mounted
         const connected = ready && account && chain
-        console.log(account)
 
         return (
           <div
