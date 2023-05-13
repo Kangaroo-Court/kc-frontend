@@ -1,8 +1,8 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { CustomConnectBtn } from '../CustomConnectBtn'
 
 const Header: React.FC = () => {
   const headerLinks: { id: 'predict' | 'gov'; link: string; label: string }[] =
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
           </Link>
         ))}
       </div>
-      <ConnectButton showBalance={false} />
+      <CustomConnectBtn />
     </div>
   )
 }

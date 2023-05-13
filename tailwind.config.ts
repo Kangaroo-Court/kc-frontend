@@ -15,6 +15,7 @@ export default {
         500: '#39393d',
         700: '#1a1b1f',
       },
+      red: '#d51111',
     },
     extend: {},
   },

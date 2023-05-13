@@ -3,6 +3,7 @@ import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
 import { useQuery } from '@airstack/airstack-react'
 import { getApeCoinBalance } from '~/queries/getApeCoinBalance.query'
+import { useAccount, useEnsName } from 'wagmi'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -14,12 +15,16 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
     label: string
   }>()
 
-  const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false }) //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  console.log({
-    data, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-    loading, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-    error, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
-  })
+  // const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false }) //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  // console.log({
+  //   data, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  //   loading, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  //   error, //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  // })
+
+  const { address, isConnected } = useAccount()
+  const { data: ensName } = useEnsName({ address })
+  console.log(ensName)
 
   return (
     <ImageActionLayout
