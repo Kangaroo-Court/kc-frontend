@@ -5,7 +5,7 @@ import Input from '../shared/Input'
 
 export type DefendantType = { id: number; label: string } //TODO change this
 
-const Defendant: React.FC = () => {
+const DefendantClaim: React.FC = () => {
   const [selectedClaim, setSelectedClaim] = useState<DefendantType>()
   const [amount, setAmount] = useState(0)
 
@@ -50,4 +50,4 @@ const Defendant: React.FC = () => {
     />
   )
 }
-export default Defendant
+export default DefendantClaim
