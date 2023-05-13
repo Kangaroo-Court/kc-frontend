@@ -12,7 +12,7 @@ const Defense: React.FC = () => {
       imageSrc="/defense.png"
       imageAlt="defense"
       actionNode={
-        <div className="flex flex-col items-center gap-60">
+        <div className="flex flex-col items-center gap-40">
           <h1 className="text-6xl font-bold text-primary-600">Defense</h1>
           <SelectPanel
             selectedOption={selectedClaim}

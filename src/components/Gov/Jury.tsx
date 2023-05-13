@@ -26,7 +26,7 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
       imageSrc={`/jury${juryNumber}.png`}
       imageAlt={`jury${juryNumber}`}
       actionNode={
-        <div className="flex flex-col items-center gap-60">
+        <div className="flex flex-col items-center gap-44">
           <h1 className="px-5 text-6xl font-bold text-primary-600">
             Jury {juryNumber}
           </h1>
