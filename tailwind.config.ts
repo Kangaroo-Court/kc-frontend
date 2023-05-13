@@ -18,5 +18,5 @@ export default {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@headlessui/tailwindcss')({ prefix: 'ui' })],
 } satisfies Config

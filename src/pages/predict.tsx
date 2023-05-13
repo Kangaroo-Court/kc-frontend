@@ -1,11 +1,13 @@
-import Input from '~/components/Input'
+import Input from '~/components/shared/Input'
 import { useState } from 'react'
 import ImageActionLayout from '~/components/Layout/ImageActionLayout'
 
 export default function Home() {
   const [amount, setAmount] = useState(0)
 
-  const onDeposit = () => {}
+  const onDeposit = () => {
+    //TODO on deposit
+  }
 
   return (
     <div className="flex h-full w-full items-center justify-end">

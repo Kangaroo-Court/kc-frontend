@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ImageActionLayout from '../Layout/ImageActionLayout'
-import SelectPanel from '../SelectPanel'
+import SelectPanel from '../shared/SelectPanel'
 
 export type ProsecutionType = { id: number; label: string } //TODO change this
 
@@ -20,7 +20,7 @@ const Prosecution: React.FC = () => {
             items={[{ id: 0, label: '0x1231231144412' }]}
           />
           <button
-            className="rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
+            className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
             disabled={!selectedClaim}
           >
             Dispute Claim

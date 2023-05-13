@@ -36,7 +36,10 @@ const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider
         chains={chains}
-        theme={darkTheme({ accentColor: theme.colors.accent })}
+        theme={darkTheme({
+          accentColor: theme.colors.accent,
+          accentColorForeground: theme.colors.primary[600],
+        })}
       >
         {children}
       </RainbowKitProvider>
