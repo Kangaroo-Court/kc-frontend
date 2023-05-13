@@ -2,6 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const Header: React.FC = () => {
   const headerLinks: { id: 'predict' | 'gov'; link: string; label: string }[] =
@@ -22,7 +23,8 @@ const Header: React.FC = () => {
 
   return (
     <div className="z-10 flex h-7 w-full items-center justify-between bg-primary-600 px-10 py-10">
-      <div className="flex gap-6 ">
+      <div className="flex items-center gap-6">
+        <Image src="/logo.png" alt="logo" width={50} height={50} />
         {headerLinks.map((item) => (
           <Link
             href={item.link}

@@ -16,7 +16,6 @@ const DefendantClaim: React.FC = () => {
   })
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
     useState<boolean>(false)
-  console.log({ data, isError, isLoading, isSuccess })
 
   return (
     <>

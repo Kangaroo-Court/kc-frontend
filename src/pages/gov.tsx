@@ -8,13 +8,13 @@ import Prosecution from '~/components/Gov/Prosecution'
 
 export default function GovPage() {
   const usersLayout = () => {
+    return <Jury juryNumber="1" />
     return <DefendantClaim />
+    return <Judge />
+    return <Defense />
     return <DefendantVeredict />
     return <Balif />
-    return <Judge />
-    return <Jury juryNumber="1" />
     return <Prosecution />
-    return <Defense />
   }
 
   return (

@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <Head>
         <title>{`Kangaroo-Court`}</title>
-        <link rel="icon" href="/vercel.svg" type="image/svg+xml"></link>
+        <link rel="icon" href="/logo.png" type="image/svg+xml"></link>
       </Head>
 
       <>

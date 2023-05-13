@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
+import { useQuery } from '@airstack/airstack-react'
+import { getApeCoinBalance } from '~/queries/getApeCoinBalance.query'
+import { formatEther } from 'viem'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -11,6 +14,13 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
     id: number
     label: string
   }>()
+
+  const { data, loading, error } = useQuery(getApeCoinBalance, { cache: false })
+  console.log({
+    data,
+    loading,
+    error,
+  })
 
   return (
     <ImageActionLayout
