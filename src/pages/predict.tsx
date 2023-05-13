@@ -2,7 +2,7 @@ import Input from '~/components/shared/Input'
 import { useState } from 'react'
 import ImageActionLayout from '~/components/Layout/ImageActionLayout'
 
-export default function Home() {
+export default function PredictPage() {
   const [amount, setAmount] = useState(0)
 
   const onDeposit = () => {

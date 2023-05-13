@@ -6,12 +6,12 @@ import Judge from '~/components/Gov/Judge/Judge'
 import Jury from '~/components/Gov/Jury'
 import Prosecution from '~/components/Gov/Prosecution'
 
-export default function Home() {
+export default function GovPage() {
   const usersLayout = () => {
+    return <Judge />
     return <DefendantVeredict />
     return <Balif />
-    return <Judge />
-    return <Jury />
+    return <Jury juryNumber="1" />
     return <Prosecution />
     return <DefendantClaim />
     return <Defense />
