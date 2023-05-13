@@ -32,7 +32,7 @@ const createJuryAttestation = async (
       schema:
         '0x56c13171ec212b1bd36ca786b7ed53678a03136863c85063ec0fa23f15e8fcee',
       data: {
-        recipient: '0x04B022a51E4413181D8BeF4C06eC642a2C107e3F',
+        recipient: '0x04B022a51E4413181D8BeF4C06eC642a2C107e3F', //judge
         expirationTime: 0,
         revocable: false,
         data: encodedData,
