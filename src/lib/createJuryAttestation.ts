@@ -1,12 +1,19 @@
 import { EAS, SchemaEncoder } from '@ethereum-attestation-service/eas-sdk'
 import { Signer } from 'ethers'
 
-const createJuryAttestation = async (
-  signer: Signer,
-  address: string,
-  veredict: boolean,
-  juryNumber: number
-) => {
+const getSchemaUID = (juryNumber: number) => {
+  switch (juryNumber) {
+    case 1:
+      return '0xb50db0f640c9e9d6f22efa9ac2cdb347d62a8253ccbd0a8cbaa1b42bf85b28f4'
+    case 2:
+      return '0xfdf312958f2f6e8ebea5130060e3c902d84ad66084cf1277610d16f503876221'
+    case 3:
+    default:
+      return '0xf74e7e9ef220a498ed0cfebc7d3983614ff18ad7360a83b93009c0b9ff80c0fc'
+  }
+}
+
+const createJuryAttestation = async (signer: Signer, address: string, veredict: boolean, juryNumber: number) => {
   try {
     const EASContractAddress = '0x1a5650D0EcbCa349DD84bAFa85790E3e6955eb84' // Sepolia v0.26
 
@@ -18,9 +25,7 @@ const createJuryAttestation = async (
     eas.connect(signer)
 
     // Initialize SchemaEncoder with the schema string
-    const schemaEncoder = new SchemaEncoder(
-      'address ADDRESS,uint256 JURY,bool VERDICT'
-    )
+    const schemaEncoder = new SchemaEncoder('address ADDRESS,uint256 JURY,bool VERDICT')
 
     const encodedData = schemaEncoder.encodeData([
       { name: 'ADDRESS', value: address, type: 'address' }, // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
@@ -29,8 +34,7 @@ const createJuryAttestation = async (
     ])
 
     const tx = await eas.attest({
-      schema:
-        '0x56c13171ec212b1bd36ca786b7ed53678a03136863c85063ec0fa23f15e8fcee',
+      schema: getSchemaUID(juryNumber),
       data: {
         recipient: '0x04B022a51E4413181D8BeF4C06eC642a2C107e3F', //judge
         expirationTime: 0,
@@ -39,7 +43,7 @@ const createJuryAttestation = async (
       },
     })
 
-    const newAttestationUID = await tx.wait()
+    await tx.wait()
   } catch (e) {
     console.error(e)
   }

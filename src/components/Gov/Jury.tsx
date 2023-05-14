@@ -1,16 +1,13 @@
+import { useQuery } from '@apollo/client'
+import { BigNumber } from 'ethers'
+import { formatUnits } from 'ethers/lib/utils.js'
 import { useState } from 'react'
+import { useAccount, useSigner } from 'wagmi'
+import createJuryAttestation from '~/lib/createJuryAttestation'
+import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice.query'
+
 import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
-import createJuryAttestation from '~/lib/createJuryAttestation'
-import { useAccount, useSigner } from 'wagmi'
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  useQuery,
-} from '@apollo/client'
-import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice.query'
-import { formatEther, formatUnits } from 'ethers/lib/utils.js'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -26,21 +23,13 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
 
   const onPassVeredict = async () => {
     if (signer && address && selectedBinary)
-      await createJuryAttestation(
-        signer,
-        address,
-        selectedBinary.id === 0,
-        +juryNumber
-      )
+      await createJuryAttestation(signer, address, selectedBinary.id === 0, +juryNumber)
   }
-  // const chainlinkApolloClient = new ApolloClient({
-  //   uri: 'https://api.thegraph.com/subgraphs/name/openpredict/chainlink-prices-subgraph',
-  //   cache: new InMemoryCache(),
-  // })
-  const { data } = useQuery(GET_APECOIN_PRICE, {
+
+  //eslint-ignore-next-line  @typescript-eslint/no-unsafe-assignment
+  const { data } = useQuery<{ prices: { price: BigNumber }[] }>(GET_APECOIN_PRICE, {
     context: { clientName: 'price' },
   })
-  console.log(data)
 
   return (
     <ImageActionLayout
@@ -48,15 +37,10 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
       imageAlt={`jury${juryNumber}`}
       actionNode={
         <div className="flex flex-col items-center gap-44">
-          <h1 className="px-5 text-6xl font-bold text-primary-600 underline">
-            Jury {juryNumber}
-          </h1>
+          <h1 className="px-5 text-6xl font-bold text-primary-600 underline">Jury {juryNumber}</h1>
           <div className="flex flex-col items-center gap-20">
             <h3 className="text-2xl font-medium text-primary-600">
-              Is ApeCoin Dead?{' '}
-              {data?.prices[0].price
-                ? `${formatUnits(data?.prices[0].price, 8)} USD`
-                : undefined}
+              Is ApeCoin Dead? {data?.prices[0]?.price ? `${formatUnits(data?.prices[0].price, 8)} USD` : undefined}
             </h3>
             <SelectPanel
               selectedOption={selectedBinary}
