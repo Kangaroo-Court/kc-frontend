@@ -33,12 +33,12 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
         +juryNumber
       )
   }
-  const chainlinkApolloClient = new ApolloClient({
-    uri: 'https://api.thegraph.com/subgraphs/name/openpredict/chainlink-prices-subgraph',
-    cache: new InMemoryCache(),
-  })
+  // const chainlinkApolloClient = new ApolloClient({
+  //   uri: 'https://api.thegraph.com/subgraphs/name/openpredict/chainlink-prices-subgraph',
+  //   cache: new InMemoryCache(),
+  // })
   const { data } = useQuery(GET_APECOIN_PRICE, {
-    client: chainlinkApolloClient,
+    context: { clientName: 'price' },
   })
   console.log(data)
 
