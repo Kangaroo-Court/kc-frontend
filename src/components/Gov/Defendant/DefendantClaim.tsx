@@ -2,8 +2,10 @@ import { useState } from 'react'
 import ImageActionLayout from '../../Layout/ImageActionLayout'
 import SelectPanel from '../../shared/SelectPanel'
 import Input from '../../shared/Input'
-import { useAccount, useBalance, useSignMessage } from 'wagmi'
+import { useAccount, useBalance, useContractRead, useSignMessage } from 'wagmi'
 import ConfirmationModal from '~/components/shared/ConfirmationModal'
+import { apeCoinAbi } from '~/abis/ApeCoin.abi'
+import { formatEther } from 'ethers/lib/utils.js'
 
 export type DefendantType = { id: number; label: string } //TODO change this
 
@@ -21,6 +23,20 @@ const DefendantClaim: React.FC = () => {
 
   const { address } = useAccount()
   const { data: balance } = useBalance({ address })
+
+  const { data: apeBalance } = useContractRead({
+    address: '0x1bd51c4ce823Cb653F107Eb366d513C32e792E52',
+    abi: apeCoinAbi,
+    functionName: 'balanceOf',
+    args: [address!],
+    enabled: !!address,
+  })
+
+  const getTokenBalance = () => {
+    if (tokenToBet?.id === 1) return balance?.formatted
+    if (tokenToBet?.id === 0 && apeBalance) return formatEther(apeBalance)
+    else return 0
+  }
 
   return (
     <>
@@ -57,7 +73,7 @@ const DefendantClaim: React.FC = () => {
                 <h4 className="text-lg font-medium text-primary-600">{tokenToBet?.label} to bet</h4>
                 <Input value={amount.toString()} onChange={(e) => setAmount(+e)} type="number" />
                 <p className=" text-primary-500">
-                  You have {tokenToBet?.id === 1 ? balance?.formatted : 0} {tokenToBet?.label}
+                  You have {getTokenBalance()} {tokenToBet?.label}
                 </p>
               </div>
             </div>
