@@ -21,7 +21,6 @@ const Bailiff: React.FC = () => {
   const parsedData = data?.attestations[0]?.decodedDataJson //eslint-disable-line  @typescript-eslint/no-unsafe-assignment
     ? JSON.parse(data.attestations[0].decodedDataJson)
     : undefined
-  console.log(parsedData)
 
   return (
     <>
@@ -33,18 +32,20 @@ const Bailiff: React.FC = () => {
             <h1 className="px-5 text-6xl font-bold text-primary-600 underline">Bailiff</h1>
             <div className="flex flex-col items-center gap-10">
               <div className="flex items-center gap-20">
-                <h3 className="text-2xl font-medium text-primary-600">***Transaction Hash***</h3>
+                <h3 className="text-2xl font-medium text-primary-600">CASENUMBER 1</h3>
               </div>
               <h3 className="text-5xl font-medium text-primary-600">
                 {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                {parsedData[2]?.value.value ? 'Guilty' : 'Not Guilty'}{' '}
+                {parsedData && parsedData[2]?.value.value ? 'Guilty' : 'Not Guilty'}
               </h3>
 
               <h4 className="flex gap-5 text-2xl font-medium text-primary-600">
                 <span>Sentence time</span>
                 <span>
                   {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */}
-                  {parsedData[3]?.value.value ? parseFloat(formatEther(parsedData[3].value.value)) * 1e18 : undefined}{' '}
+                  {parsedData && parsedData[3]?.value.value
+                    ? parseFloat(formatEther(parsedData[3].value.value)) * 1e18
+                    : undefined}{' '}
                 </span>
               </h4>
             </div>

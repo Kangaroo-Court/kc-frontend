@@ -2,11 +2,10 @@ import { useState } from 'react'
 import ImageActionLayout from '../../Layout/ImageActionLayout'
 import SelectPanel from '../../shared/SelectPanel'
 import Input from '../../shared/Input'
-import { useAccount, useBalance, useContractRead, useSignMessage, useSigner } from 'wagmi'
+import { useAccount, useBalance, useContractRead, useSignMessage } from 'wagmi'
 import ConfirmationModal from '~/components/shared/ConfirmationModal'
 import { apeCoinAbi } from '~/abis/ApeCoin.abi'
 import { formatEther } from 'ethers/lib/utils.js'
-import createDefendantAttestation from '~/lib/createDefendantAttestation'
 
 export type DefendantType = { id: number; label: string } //TODO change this
 
@@ -17,6 +16,10 @@ const DefendantClaim: React.FC = () => {
     id: 1,
     label: 'GETH',
   })
+  const { isError, isLoading, isSuccess, signMessage } = useSignMessage({
+    message: 'Make claim',
+  })
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState<boolean>(false)
 
   const { address } = useAccount()
   const { data: balance } = useBalance({ address })
@@ -34,10 +37,7 @@ const DefendantClaim: React.FC = () => {
     if (tokenToBet?.id === 0 && apeBalance) return formatEther(apeBalance)
     else return 0
   }
-  const { data: signer } = useSigner()
-  const onMakeClaim = async () => {
-    if (signer && address) await createDefendantAttestation(signer, address)
-  }
+
   return (
     <>
       <ImageActionLayout
@@ -47,7 +47,7 @@ const DefendantClaim: React.FC = () => {
           <div className="flex flex-col items-center gap-20">
             <h1 className="text-6xl font-bold text-primary-600 underline">Defendant</h1>
             <div className="flex flex-col gap-10">
-              <h3 className="text-3xl font-medium text-primary-600">Is ApeCoin dead?</h3>
+              <h3 className="text-3xl font-medium text-primary-600">Is ApeCoin dead by XXXXX?</h3>
               <SelectPanel
                 selectedOption={selectedClaim}
                 changeSelectedOption={setSelectedClaim}
@@ -79,15 +79,23 @@ const DefendantClaim: React.FC = () => {
             </div>
             <button
               className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
-              disabled={!selectedClaim || amount < 0}
+              disabled={!selectedClaim || amount < 0 || amount > Number(balance?.formatted)}
               onClick={() => {
-                onMakeClaim()
+                setIsConfirmationModalOpen(true)
+                signMessage()
               }}
             >
               Make Claim
             </button>
           </div>
         }
+      />
+      <ConfirmationModal
+        isOpen={isConfirmationModalOpen}
+        setIsOpen={setIsConfirmationModalOpen}
+        isError={isError}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
       />
     </>
   )

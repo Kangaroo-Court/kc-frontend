@@ -71,7 +71,7 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
             <IoClose size={24} />
           </span>
         </div>
-        <h3 className="text-2xl font-medium text-primary-600">***Transaction Hash***</h3>
+        <h3 className="text-2xl font-medium text-primary-600">CASENUMBER 1</h3>
         <div className="flex flex-col items-center gap-5 pb-10">
           <div className="flex gap-5 text-lg font-medium text-primary-600">
             <h3>Jury 1</h3>
