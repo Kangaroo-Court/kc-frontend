@@ -43,9 +43,10 @@ const Bailiff: React.FC = () => {
                 <span>Sentence time</span>
                 <span>
                   {/*eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument */}
-                  {parsedData && parsedData[3]?.value.value
-                    ? parseFloat(formatEther(parsedData[3].value.value)) * 1e18
-                    : undefined}{' '}
+                  {/* {parsedData && parsedData[3]?.value.value
+                    ? parseFloat(formatEther(parsedData[3].value.value)) * 1e18 //eslint-ignore-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+                    : undefined}{' '} */}
+                  0
                 </span>
               </h4>
             </div>
