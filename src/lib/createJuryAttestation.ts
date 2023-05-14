@@ -40,9 +40,8 @@ const createJuryAttestation = async (
     })
 
     const newAttestationUID = await tx.wait()
-    console.log(newAttestationUID)
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 

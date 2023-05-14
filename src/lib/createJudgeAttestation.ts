@@ -41,7 +41,5 @@ const createJudgeAttestation = async (
   })
 
   const newAttestationUID = await tx.wait()
-
-  console.log(newAttestationUID)
 }
 export default createJudgeAttestation

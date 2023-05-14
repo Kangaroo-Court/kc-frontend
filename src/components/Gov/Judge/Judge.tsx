@@ -4,6 +4,8 @@ import SelectPanel from '../../shared/SelectPanel'
 import Input from '../../shared/Input'
 import VeredictsModal from './VeredictsModal'
 import { GiScrollUnfurled } from 'react-icons/gi'
+import createJudgeAttestation from '~/lib/createJudgeAttestation'
+import { useAccount, useSigner } from 'wagmi'
 
 const Judge: React.FC = () => {
   const [selectedBinary, setSelectedBinary] = useState<{
@@ -16,6 +18,19 @@ const Judge: React.FC = () => {
   useEffect(() => {
     if (selectedBinary?.id === 1) setSentenceTime(0)
   }, [selectedBinary])
+
+  const { data: signer } = useSigner()
+  const { address } = useAccount()
+
+  const onFinalJudgment = async () => {
+    if (signer && address && selectedBinary)
+      await createJudgeAttestation(
+        signer,
+        address,
+        selectedBinary.id === 0,
+        sentenceTime
+      )
+  }
 
   return (
     <>
@@ -62,6 +77,7 @@ const Judge: React.FC = () => {
             <button
               className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
               disabled={!selectedBinary}
+              onClick={onFinalJudgment}
             >
               Final Judgement
             </button>
