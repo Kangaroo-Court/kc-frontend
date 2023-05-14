@@ -9,7 +9,7 @@ import {
   InMemoryCache,
   useQuery,
 } from '@apollo/client'
-import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice'
+import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice.query'
 import { formatEther, formatUnits } from 'ethers/lib/utils.js'
 
 type JuryProps = {

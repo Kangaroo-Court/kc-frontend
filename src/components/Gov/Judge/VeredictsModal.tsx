@@ -24,7 +24,6 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({
   const parsedData = data?.attestations.map((x: any) =>
     JSON.parse(x.decodedDataJson)
   )
-  console.log(parsedData)
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
