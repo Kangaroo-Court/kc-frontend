@@ -28,7 +28,7 @@ const DefendantClaim: React.FC = () => {
           <div className="flex flex-col items-center gap-32">
             <h1 className="text-6xl font-bold text-primary-600 ">Defendant</h1>
             <div className="flex flex-col gap-10">
-              <h3 className="text-3xl font-medium text-primary-600">Is ApeCoin dead between XXXXXX and YYYYYY?</h3>
+              <h3 className="text-3xl font-medium text-primary-600">Is ApeCoin dead by XXXXX?</h3>
               <SelectPanel
                 selectedOption={selectedClaim}
                 changeSelectedOption={setSelectedClaim}
@@ -46,7 +46,7 @@ const DefendantClaim: React.FC = () => {
             </div>
             <button
               className="flex self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
-              disabled={!selectedClaim}
+              disabled={!selectedClaim || amount < 0 || amount > Number(balance?.formatted)}
               onClick={() => {
                 setIsConfirmationModalOpen(true)
                 signMessage()
