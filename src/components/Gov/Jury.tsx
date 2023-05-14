@@ -10,7 +10,7 @@ import {
   useQuery,
 } from '@apollo/client'
 import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice'
-import { formatEther } from 'ethers/lib/utils.js'
+import { formatEther, formatUnits } from 'ethers/lib/utils.js'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -55,7 +55,7 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
             <h3 className="text-2xl font-medium text-primary-600">
               Is ApeCoin Dead?{' '}
               {data?.prices[0].price
-                ? formatEther(data?.prices[0].price)
+                ? `${formatUnits(data?.prices[0].price, 8)} USD`
                 : undefined}
             </h3>
             <SelectPanel
