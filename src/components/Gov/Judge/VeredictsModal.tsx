@@ -15,8 +15,8 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
     },
   })
 
-  const jury1ParsedData:
-    | {
+  const jury1ParsedData: //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  | {
         name: string
         type: string
         signature: string
@@ -32,8 +32,8 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
     },
   })
 
-  const jury2ParsedData:
-    | {
+  const jury2ParsedData: //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  | {
         name: string
         type: string
         signature: string
@@ -49,8 +49,8 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
     },
   })
 
-  const jury3ParsedData:
-    | {
+  const jury3ParsedData: //eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  | {
         name: string
         type: string
         signature: string
