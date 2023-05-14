@@ -3,6 +3,14 @@ import ImageActionLayout from '../Layout/ImageActionLayout'
 import SelectPanel from '../shared/SelectPanel'
 import createJuryAttestation from '~/lib/createJuryAttestation'
 import { useAccount, useSigner } from 'wagmi'
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  useQuery,
+} from '@apollo/client'
+import GET_APECOIN_PRICE from '~/queries/getApeCoinPrice'
+import { formatEther } from 'ethers/lib/utils.js'
 
 type JuryProps = {
   juryNumber: '1' | '2' | '3'
@@ -25,6 +33,14 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
         +juryNumber
       )
   }
+  const chainlinkApolloClient = new ApolloClient({
+    uri: 'https://api.thegraph.com/subgraphs/name/openpredict/chainlink-prices-subgraph',
+    cache: new InMemoryCache(),
+  })
+  const { data } = useQuery(GET_APECOIN_PRICE, {
+    client: chainlinkApolloClient,
+  })
+  console.log(data)
 
   return (
     <ImageActionLayout
@@ -37,7 +53,10 @@ const Jury: React.FC<JuryProps> = ({ juryNumber }) => {
           </h1>
           <div className="flex flex-col items-center gap-20">
             <h3 className="text-2xl font-medium text-primary-600">
-              ***Transaction Hash***
+              Is ApeCoin Dead?{' '}
+              {data?.prices[0].price
+                ? formatEther(data?.prices[0].price)
+                : undefined}
             </h3>
             <SelectPanel
               selectedOption={selectedBinary}
