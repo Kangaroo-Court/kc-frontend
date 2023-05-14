@@ -1,11 +1,11 @@
 import { useAccount } from 'wagmi'
 import Bailiff from '~/components/Gov/Bailiff'
-import DefendantClaim from '~/components/Gov/Defendant/DefendantClaim'
 import Defense from '~/components/Gov/Defense'
 import Judge from '~/components/Gov/Judge/Judge'
 import Jury from '~/components/Gov/Jury'
 import Prosecution from '~/components/Gov/Prosecution'
 import roles from 'roles.json'
+import DefendantVeredict from '~/components/Gov/Defendant/DefendantVeredict'
 
 export default function GovPage() {
   const { address } = useAccount()
@@ -15,7 +15,7 @@ export default function GovPage() {
 
     switch (roleToBe) {
       case 'Defandant':
-        return <DefendantClaim />
+        return <DefendantVeredict />
       case 'Defense':
         return <Defense />
       case 'Prosecutor':
@@ -31,12 +31,7 @@ export default function GovPage() {
       case 'Bailiff':
         return <Bailiff />
     }
-    // return <DefendantVeredict />
   }
 
-  return (
-    <div className="flex h-full w-full items-center justify-center">
-      {usersLayout()}
-    </div>
-  )
+  return <div className="flex h-full w-full items-center justify-center">{usersLayout()}</div>
 }

@@ -8,11 +8,10 @@ export type DefenseType = { id: number; label: string } //TODO change this
 
 const Defense: React.FC = () => {
   const [selectedClaim, setSelectedClaim] = useState<DefenseType>()
-  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
+  const { isError, isLoading, isSuccess, signMessage } = useSignMessage({
     message: 'Propose defense',
   })
-  const [isConfirmationModalOpen, setIsConfirmationModalOpen] =
-    useState<boolean>(false)
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState<boolean>(false)
 
   return (
     <>
@@ -21,9 +20,7 @@ const Defense: React.FC = () => {
         imageAlt="defense"
         actionNode={
           <div className="flex flex-col items-center gap-40">
-            <h1 className="text-6xl font-bold text-primary-600 underline">
-              Defense
-            </h1>
+            <h1 className="text-6xl font-bold text-primary-600 underline">Defense</h1>
             <SelectPanel
               selectedOption={selectedClaim}
               changeSelectedOption={setSelectedClaim}

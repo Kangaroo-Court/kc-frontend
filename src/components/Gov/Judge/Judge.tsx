@@ -6,7 +6,6 @@ import VeredictsModal from './VeredictsModal'
 import { GiScrollUnfurled } from 'react-icons/gi'
 import createJudgeAttestation from '~/lib/createJudgeAttestation'
 import { useAccount, useSigner } from 'wagmi'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 
 const Judge: React.FC = () => {
   const [selectedBinary, setSelectedBinary] = useState<{

@@ -26,7 +26,7 @@ const DefendantClaim: React.FC = () => {
         imageAlt="defendant"
         actionNode={
           <div className="flex flex-col items-center gap-32">
-            <h1 className="text-6xl font-bold text-primary-600 ">Defendant</h1>
+            <h1 className="text-6xl font-bold text-primary-600 underline">Defendant</h1>
             <div className="flex flex-col gap-10">
               <h3 className="text-3xl font-medium text-primary-600">Is ApeCoin dead by XXXXX?</h3>
               <SelectPanel
