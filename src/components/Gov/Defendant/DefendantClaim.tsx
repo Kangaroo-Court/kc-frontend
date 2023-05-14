@@ -8,9 +8,12 @@ import ConfirmationModal from '~/components/shared/ConfirmationModal'
 export type DefendantType = { id: number; label: string } //TODO change this
 
 const DefendantClaim: React.FC = () => {
-  const [selectedClaim, setSelectedClaim] = useState<DefendantType>()
+  const [selectedClaim, setSelectedClaim] = useState<DefendantType | undefined>()
   const [amount, setAmount] = useState(0)
-
+  const [tokenToBet, setTokenToBet] = useState<{ id: number; label: string } | undefined>({
+    id: 1,
+    label: 'GETH',
+  })
   const { isError, isLoading, isSuccess, signMessage } = useSignMessage({
     message: 'Make claim',
   })
@@ -39,9 +42,23 @@ const DefendantClaim: React.FC = () => {
                 ]}
               />
               <div>
-                <h4 className="text-lg font-medium text-primary-600">GETH to bet</h4>
+                <div className="flex items-center gap-5">
+                  <h4 className="text-lg font-medium text-primary-600">Bet in</h4>
+                  <SelectPanel
+                    selectedOption={tokenToBet}
+                    changeSelectedOption={setTokenToBet}
+                    isHorizontal
+                    items={[
+                      { id: 0, label: 'ApeCoin' },
+                      { id: 1, label: 'GETH' },
+                    ]}
+                  />
+                </div>
+                <h4 className="text-lg font-medium text-primary-600">{tokenToBet?.label} to bet</h4>
                 <Input value={amount.toString()} onChange={(e) => setAmount(+e)} type="number" />
-                <p className=" text-primary-500">You have {balance?.formatted} GETH</p>
+                <p className=" text-primary-500">
+                  You have {tokenToBet?.id === 1 ? balance?.formatted : 0} {tokenToBet?.label}
+                </p>
               </div>
             </div>
             <button
