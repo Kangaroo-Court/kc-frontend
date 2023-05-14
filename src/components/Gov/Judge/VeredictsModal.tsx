@@ -24,7 +24,7 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
       }[]
     | undefined = jury1Data?.attestations.map(
     (item: { decodedDataJson: string }) => JSON.parse(item.decodedDataJson) //eslint-disable-line  @typescript-eslint/no-unsafe-return
-  )
+  )[0]
 
   const { data: jury2Data } = useQuery<{ attestations: { decodedDataJson: string }[] }>(GET_EAS_ATTESTATIONS, {
     variables: {
@@ -41,7 +41,7 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
       }[]
     | undefined = jury2Data?.attestations.map(
     (item: { decodedDataJson: string }) => JSON.parse(item.decodedDataJson) //eslint-disable-line  @typescript-eslint/no-unsafe-return
-  )
+  )[0]
 
   const { data: jury3Data } = useQuery<{ attestations: { decodedDataJson: string }[] }>(GET_EAS_ATTESTATIONS, {
     variables: {
@@ -58,8 +58,7 @@ const VeredictsModal: React.FC<VeredictsModalProps> = ({ isOpen, setIsOpen }) =>
       }[]
     | undefined = jury3Data?.attestations.map(
     (item: { decodedDataJson: string }) => JSON.parse(item.decodedDataJson) //eslint-disable-line  @typescript-eslint/no-unsafe-return
-  )
-  console.log(jury3ParsedData)
+  )[0]
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
