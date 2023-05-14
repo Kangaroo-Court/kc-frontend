@@ -25,12 +25,7 @@ const Judge: React.FC = () => {
 
   const onFinalJudgment = async () => {
     if (signer && address && selectedBinary)
-      await createJudgeAttestation(
-        signer,
-        address,
-        selectedBinary.id === 0,
-        sentenceTime
-      )
+      await createJudgeAttestation(signer, address, selectedBinary.id === 0, sentenceTime)
   }
 
   return (
@@ -40,14 +35,10 @@ const Judge: React.FC = () => {
         imageAlt="judge"
         actionNode={
           <div className="flex flex-col items-center gap-28">
-            <h1 className="px-5 text-6xl font-bold text-primary-600 underline">
-              Judge
-            </h1>
+            <h1 className="px-5 text-6xl font-bold text-primary-600 underline">Judge</h1>
             <div className="flex flex-col items-center gap-10">
               <div className="flex items-center gap-20">
-                <h3 className="text-2xl font-medium text-primary-600">
-                  ***Transaction Hash***
-                </h3>
+                <h3 className="text-2xl font-medium text-primary-600">***Transaction Hash***</h3>
                 <button
                   onClick={() => setIsVeredictModalOpen(true)}
                   className="flex items-center gap-5 self-end rounded-lg border border-white bg-primary-600 p-4 text-lg font-medium text-white disabled:opacity-50"
@@ -65,13 +56,12 @@ const Judge: React.FC = () => {
                 ]}
               />
               <div>
-                <h4 className="text-lg font-medium text-primary-600">
-                  Sentence time
-                </h4>
+                <h4 className="text-lg font-medium text-primary-600">Sentence time</h4>
                 <Input
                   value={sentenceTime.toString()}
                   onChange={(e) => setSentenceTime(+e)}
                   isDisabled={selectedBinary?.id !== 0}
+                  type="number"
                 />
               </div>
             </div>
@@ -85,10 +75,7 @@ const Judge: React.FC = () => {
           </div>
         }
       />
-      <VeredictsModal
-        isOpen={isVeredictModalOpen}
-        setIsOpen={setIsVeredictModalOpen}
-      />
+      <VeredictsModal isOpen={isVeredictModalOpen} setIsOpen={setIsVeredictModalOpen} />
     </>
   )
 }
